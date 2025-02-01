@@ -76,7 +76,7 @@ class Sikretekdate:
         
         return dayMonthStr + f", {sikretekordinal(abs(self.year))} kolri {"Koilo" if self.year >= 0 else "Keili"} Naritareni"
     def getFullStr(self, ignoreSolstices = False):
-        return f"({self}) [{self.gregoriandate} || [{self.getEnglishShort(ignoreSolstices)}] {self.getEnglishStr(ignoreSolstices)} || [{self.getSikretekShort(ignoreSolstices)}] {self.getSikretekStr(ignoreSolstices)}]"
+        return f"({self} || {self.gregoriandate}) [{self.getEnglishShort(ignoreSolstices)}] {self.getEnglishStr(ignoreSolstices)} || [{self.getSikretekShort(ignoreSolstices)}] {self.getSikretekStr(ignoreSolstices)}]"
     
     def getEnglishShort(self, ignoreSolstices = False):
         monthLength = self.getMonthLength()
@@ -206,10 +206,10 @@ anchordatetime = datetime.date(2021, 6, 25) # 25 June 2021 - ANCHOR DATE - 1st M
 anchorsikretekdate = Sikretekdate(0, 1, 0, anchordatetime)
 
 while True:
-    q = input(f"Current Anchor at [{anchorsikretekdate.gregoriandate} | {anchorsikretekdate}]: ")
+    q = input(f"Currently at [{anchorsikretekdate.gregoriandate} | {anchorsikretekdate}]: ")
     mainq = q.split()[0]
     params = {}
-    if mainq == "end": break
+    if mainq == "end" or mainq == "q": break
 
     for e in q.split()[1:]:
         qe = e.split("=")
@@ -220,7 +220,7 @@ while True:
 
     ignoreSolstices = "ignore" in params and params["ignore"]
 
-    if mainq == "adv":
+    if mainq == "adv" or mainq == "a":
         n = 1
         if "value" in params:
             n = int(params["value"])
@@ -236,7 +236,7 @@ while True:
                 else: outstr = anchorsikretekdate
                 outfile.write(f"{anchorsikretekdate.gregoriandate} | {outstr}\n")
         
-    if mainq == "bck":
+    if mainq == "bck" or mainq == "b":
         n = 1
         if "value" in params:
             n = int(params["value"])
@@ -280,6 +280,6 @@ while True:
             if anchorsikretekdate.gregoriandate != targetdate: print("GOTO failed!")
 
     outfile.flush()
-    print(f"[{mainq}] {params} PROCESSED")
+    print(f"[{mainq}] {str(params)+" " if params else ""}PROCESSED")
     if "end" in params:
         break
