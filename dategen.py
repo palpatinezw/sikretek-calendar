@@ -13,7 +13,7 @@ class Sikretekdate:
         self.gregoriandate = gregoriandate
 
     def __str__(self):
-        return f"{twodigitstr(self.day)}-{"LS" if self.month == 0 else "DH" if self.month == 14 else twodigitstr(self.month)}-{twodigitstr(abs(self.year)) + ("AR" if self.year >= 0 else "BR")}"
+        return f"{twodigitstr(self.day)}-{('LS' if self.month == 0 else 'DH' if self.month == 14 else twodigitstr(self.month))}-{twodigitstr(abs(self.year))}{'AR' if self.year >= 0 else 'BR'}"
 
     def getEnglishStr(self, ignoreSolstices = False):
         monthLength = self.getMonthLength()
