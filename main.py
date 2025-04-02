@@ -1,6 +1,5 @@
 from flask import Flask, request
 import datetime
-import json
 from dategen import Sikretekdate
 
 app = Flask(__name__)

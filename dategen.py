@@ -1,5 +1,4 @@
 import datetime
-import json
 
 ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(n//10%10!=1)*(n%10<4)*n%10::4])
 sikretekordinal = lambda n: "%d%s" % (n, "m" if n==2 else "k")
