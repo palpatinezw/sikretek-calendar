@@ -1,4 +1,5 @@
 import datetime
+import json
 
 ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(n//10%10!=1)*(n%10<4)*n%10::4])
 sikretekordinal = lambda n: "%d%s" % (n, "m" if n==2 else "k")
@@ -200,4 +201,18 @@ class Sikretekdate:
 
         else:
             self.day -= 1
+    def gotoDate(self, targetdate):
+        deltatotarget = targetdate - self.gregoriandate
+        for i in range(abs(deltatotarget.days)):
+            if targetdate > self.gregoriandate: self.advanceDate()
+            else: self.backDate()
 
+    def getStrObj(self):
+        return {
+            "date":self.gregoriandate,
+            "englishStr":self.getEnglishStr(),
+            "sikretekStr":self.getSikretekStr(),
+            "englishSh":self.getEnglishShort(),
+            "sikretekSh":self.getSikretekShort(),
+            "fullStr":self.getFullStr()
+        }
