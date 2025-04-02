@@ -27,24 +27,24 @@ class Sikretekdate:
             elif self.gregoriandate > dayOfLight:
                 if self.day == 0: dayMonthStr = "Moon of Light of the Day of Light"
                 elif self.day == 15: dayMonthStr = "Moon of Darkness of the Day of Light"
-                else: dayMonthStr = f"{ordinal(getdaystr(self.day))} Day of the {"Rising" if self.day > 15 else "Falling"} Moon of the Day of Light"
+                else: dayMonthStr = f"{ordinal(getdaystr(self.day))} Day of the {("Rising" if self.day > 15 else "Falling")} Moon of the Day of Light"
             else:
                 if self.day == 0: dayMonthStr = "Grand Moon of Light"
                 elif self.day == 15: dayMonthStr = "Grand Moon of Darkness"
-                else: dayMonthStr = f"{ordinal(getdaystr(self.day))} Day of the Grand {"Rising" if self.day > 15 else "Falling"} Moon"
+                else: dayMonthStr = f"{ordinal(getdaystr(self.day))} Day of the Grand {("Rising" if self.day > 15 else "Falling")} Moon"
         elif self.month == 14:
             dayOfDarkness = datetime.date((self.gregoriandate.year - 1) if self.gregoriandate.month == 1 else self.gregoriandate.year, 12, 21)
             if not ignoreSolstices and self.gregoriandate == dayOfDarkness:
                 dayMonthStr = "Day of Darkness"
             elif self.day == 0: dayMonthStr = "Moon of Light of the Day of Darkness"
             elif self.day == 15: dayMonthStr = "Moon of Darkness of the Day of Darkness"
-            else: dayMonthStr = f"{ordinal(getdaystr(self.day))} Day of the {"Rising" if self.day > 15 else "Falling"} Moon of the Day of Darkness"
+            else: dayMonthStr = f"{ordinal(getdaystr(self.day))} Day of the {("Rising" if self.day > 15 else "Falling")} Moon of the Day of Darkness"
         else:
             if self.day == 0: dayMonthStr = f"{ordinal(self.month)} Moon of Light"
             elif self.day == 15: dayMonthStr = f"{ordinal(self.month)} Moon of Darkness"
-            else: dayMonthStr = f"{ordinal(getdaystr(self.day))} Day of the {ordinal(self.month)} {"Rising" if self.day > 15 else "Falling"} Moon"
+            else: dayMonthStr = f"{ordinal(getdaystr(self.day))} Day of the {ordinal(self.month)} {("Rising" if self.day > 15 else "Falling")} Moon"
         
-        return dayMonthStr + f", {abs(self.year)} year{"" if abs(self.year) == 1 else "s"} {"After" if self.year >= 0 else "Before"} Revelation"
+        return dayMonthStr + f", {abs(self.year)} year{("" if abs(self.year) == 1 else "s")} {("After" if self.year >= 0 else "Before")} Revelation"
     def getSikretekStr(self, ignoreSolstices = False):
         monthLength = self.getMonthLength()
         if self.day >= monthLength: raise Exception("Day exceeds length of month")
@@ -57,24 +57,24 @@ class Sikretekdate:
             elif self.gregoriandate > dayOfLight:
                 if self.day == 0: dayMonthStr = "Sihèrokenol Sihèrojorum"
                 elif self.day == 15: dayMonthStr = "Heisèrikenol Sihèrojorum"
-                else: dayMonthStr = f"{sikretekordinal(getdaystr(self.day))} Joru {"Makuni" if self.day > 15 else "Teimi"}kenolem Sihèrojorum"
+                else: dayMonthStr = f"{sikretekordinal(getdaystr(self.day))} Joru {("Makuni" if self.day > 15 else "Teimi")}kenolem Sihèrojorum"
             else:
                 if self.day == 0: dayMonthStr = "Kai Sihèrokenol"
                 elif self.day == 15: dayMonthStr = "Kai Heisèrikenol"
-                else: dayMonthStr = f"{sikretekordinal(getdaystr(self.day))} Joru Kai {"Makuni" if self.day > 15 else "Teimi"}kenolem"
+                else: dayMonthStr = f"{sikretekordinal(getdaystr(self.day))} Joru Kai {("Makuni" if self.day > 15 else "Teimi")}kenolem"
         elif self.month == 14:
             dayOfDarkness = datetime.date((self.gregoriandate.year - 1) if self.gregoriandate.month == 1 else self.gregoriandate.year, 12, 21)
             if self.gregoriandate == dayOfDarkness:
                 dayMonthStr = "Heisèrijoru"
             elif self.day == 0: dayMonthStr = "Sihèrokenol Heisèrijorum"
             elif self.day == 15: dayMonthStr = "Heisèrikenol Heisèrijorum"
-            else: dayMonthStr = f"{sikretekordinal(getdaystr(self.day))} Joru {"Makuni" if self.day > 15 else "Teimi"}kenolem Heisèrijorum"
+            else: dayMonthStr = f"{sikretekordinal(getdaystr(self.day))} Joru {("Makuni" if self.day > 15 else "Teimi")}kenolem Heisèrijorum"
         else:
             if self.day == 0: dayMonthStr = f"{sikretekordinal(self.month)} Sihèrokenol"
             elif self.day == 15: dayMonthStr = f"{sikretekordinal(self.month)} Heisèrikenol"
-            else: dayMonthStr = f"{sikretekordinal(getdaystr(self.day))} Joru {sikretekordinal(self.month)} {"Makuni" if self.day > 15 else "Teimi"}kenolem"
+            else: dayMonthStr = f"{sikretekordinal(getdaystr(self.day))} Joru {sikretekordinal(self.month)} {("Makuni" if self.day > 15 else "Teimi")}kenolem"
         
-        return dayMonthStr + f", {sikretekordinal(abs(self.year))} kolri {"Koilo" if self.year >= 0 else "Keili"} Naritareni"
+        return dayMonthStr + f", {sikretekordinal(abs(self.year))} kolri {("Koilo" if self.year >= 0 else "Keili")} Naritareni"
     def getFullStr(self, ignoreSolstices = False):
         return f"({self} || {self.gregoriandate}) [{self.getEnglishShort(ignoreSolstices)}] {self.getEnglishStr(ignoreSolstices)} || [{self.getSikretekShort(ignoreSolstices)}] {self.getSikretekStr(ignoreSolstices)}]"
     
@@ -90,24 +90,24 @@ class Sikretekdate:
             elif self.gregoriandate > dayOfLight:
                 if self.day == 0: dayMonthStr = "ML-LLL"
                 elif self.day == 15: dayMonthStr = "MD-LLD"
-                else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-LL{"R" if self.day > 15 else "F"}"
+                else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-LL{("R" if self.day > 15 else "F")}"
             else:
                 if self.day == 0: dayMonthStr = "ML-GLL"
                 elif self.day == 15: dayMonthStr = "MD-GLD"
-                else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-GL{"R" if self.day > 15 else "F"}"
+                else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-GL{("R" if self.day > 15 else "F")}"
         elif self.month == 14:
             dayOfDarkness = datetime.date((self.gregoriandate.year - 1) if self.gregoriandate.month == 1 else self.gregoriandate.year, 12, 21)
             if not ignoreSolstices and self.gregoriandate == dayOfDarkness:
                 dayMonthStr = "DD-DDD"
             elif self.day == 0: dayMonthStr = "ML-DDL"
             elif self.day == 15: dayMonthStr = "MD-DDD"
-            else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-DD{"R" if self.day > 15 else "F"}"
+            else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-DD{("R" if self.day > 15 else "F")}"
         else:
             if self.day == 0: dayMonthStr = f"ML-{twodigitstr(self.month)}L"
             elif self.day == 15: dayMonthStr = f"MD-{twodigitstr(self.month)}D"
-            else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-{twodigitstr(self.month)}{"R" if self.day > 15 else "F"}"
+            else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-{twodigitstr(self.month)}{("R" if self.day > 15 else "F")}"
         
-        return dayMonthStr + f"-{twodigitstr(abs(self.year))}{"A" if self.year >= 0 else "B"}R"
+        return dayMonthStr + f"-{twodigitstr(abs(self.year))}{("A" if self.year >= 0 else "B")}R"
     def getSikretekShort(self, ignoreSolstices = False):
         monthLength = self.getMonthLength()
         if self.day >= monthLength: raise Exception("Day exceeds length of month")
@@ -120,24 +120,24 @@ class Sikretekdate:
             elif self.gregoriandate > dayOfLight:
                 if self.day == 0: dayMonthStr = "SK-SJS"
                 elif self.day == 15: dayMonthStr = "HK-SJH"
-                else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-SJ{"M" if self.day > 15 else "T"}"
+                else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-SJ{("M" if self.day > 15 else "T")}"
             else:
                 if self.day == 0: dayMonthStr = "SK-KAS"
                 elif self.day == 15: dayMonthStr = "HK-KAH"
-                else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-KA{"M" if self.day > 15 else "T"}"
+                else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-KA{("M" if self.day > 15 else "T")}"
         elif self.month == 14:
             dayOfDarkness = datetime.date((self.gregoriandate.year - 1) if self.gregoriandate.month == 1 else self.gregoriandate.year, 12, 21)
             if not ignoreSolstices and self.gregoriandate == dayOfDarkness:
                 dayMonthStr = "HJ-HJH"
             elif self.day == 0: dayMonthStr = "SK-HJS"
             elif self.day == 15: dayMonthStr = "HK-HJH"
-            else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-HJ{"M" if self.day > 15 else "T"}"
+            else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-HJ{("M" if self.day > 15 else "T")}"
         else:
             if self.day == 0: dayMonthStr = f"SK-{twodigitstr(self.month)}S"
             elif self.day == 15: dayMonthStr = f"MD-{twodigitstr(self.month)}H"
-            else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-{twodigitstr(self.month)}{"M" if self.day > 15 else "T"}"
+            else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-{twodigitstr(self.month)}{("M" if self.day > 15 else "T")}"
         
-        return dayMonthStr + f"-{twodigitstr(abs(self.year))}{"Koi" if self.year >= 0 else "Kei"}R"
+        return dayMonthStr + f"-{twodigitstr(abs(self.year))}{("Koi" if self.year >= 0 else "Kei")}R"
 
     def getMonthLength(self):
         if self.month == 0 and self.year%5 == 0:
