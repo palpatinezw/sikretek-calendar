@@ -115,7 +115,7 @@ class Sikretekdate:
         if self.month == 0:
             dayOfLight = datetime.date(self.gregoriandate.year, 6, 21)
             if not ignoreSolstices and self.gregoriandate == dayOfLight:
-                dayMonthStr = "SJ-SSS"
+                dayMonthStr = "SJ-SJS"
                 
             elif self.gregoriandate > dayOfLight:
                 if self.day == 0: dayMonthStr = "SK-SJS"
@@ -128,7 +128,7 @@ class Sikretekdate:
         elif self.month == 14:
             dayOfDarkness = datetime.date((self.gregoriandate.year - 1) if self.gregoriandate.month == 1 else self.gregoriandate.year, 12, 21)
             if not ignoreSolstices and self.gregoriandate == dayOfDarkness:
-                dayMonthStr = "HJ-HHH"
+                dayMonthStr = "HJ-HJH"
             elif self.day == 0: dayMonthStr = "SK-HJS"
             elif self.day == 15: dayMonthStr = "HK-HJH"
             else: dayMonthStr = f"{twodigitstr(getdaystr(self.day))}-HJ{"M" if self.day > 15 else "T"}"
