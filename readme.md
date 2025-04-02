@@ -41,4 +41,4 @@ Presented in the format `DD-MMX-YYYyyN`.
 
 `X` represents the submonth. It is either `T` for the Teimikenol, `M` for the Makunikenol, `S` for the Sihèrokenol (full moon), or `H` for the Heisèrikenol (new moon).
 
-`YYYyyN` represents the year, given as 2 numbers followed by `KoiR` for Koilo Ritriuy, or `KeiR` for Keili Ritriuy
+`YYYyyR` represents the year, given as 2 numbers followed by `KoiR` for Koilo Ritriuy, or `KeiR` for Keili Ritriuy
